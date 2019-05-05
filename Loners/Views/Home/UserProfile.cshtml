@@ -1,0 +1,85 @@
+@model Loners.DBModel.User
+
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>User profile</h2>
+
+<table style="border: 1px solid #c2c2c2;">
+    <tbody>
+        <tr>
+            <td style="vertical-align:top; padding: 10px;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img style="border: 1px solid black;" src="~/Content/photoEmpty.png" alt="image" height="200" width="150">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td style="vertical-align:top; padding-top: 10px; padding-bottom: 10px; padding-right: 10px;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>User name:</strong> @Model.UserName</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Age:</strong>: @Model.Age</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gender:</strong> @Model.Gender</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status:</strong> @Model.Status</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Country:</strong> @Model.Country</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MBTI:</strong> @Model.MBTI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date of registration:</strong> @Model.DateOfRegistration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+
+            <td style="vertical-align:top; padding-top: 10px; padding-right: 10px; padding-bottom: 10px;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>About Me:</strong> @Model.AboutMe</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interest/Hobbies:</strong> @Model.InterestsHobbies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biorytmus:</strong> @Model.Biorytmus</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr style="width:100%">
+            <td colspan="3" style="text-align: right;">
+                @Html.ActionLink("Edit profile", "EditProfile", "Home")
+            </td>
+        </tr>
+    </tbody>
+</table>
