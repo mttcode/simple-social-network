@@ -1,0 +1,71 @@
+@model Loners.Models.UserModel
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+<div class="registration-main">
+    <div class="registration-content">
+        <div style="text-align:center;"><img src="~/Content/lonersImage.png" alt="LonersImage" /></div>
+        <p style="text-align:center; color:#999999;">It’s free and always will be.</p>
+        @ViewBag.ErrorLogin
+        <hr />
+
+        <fieldset>
+            @using (Html.BeginForm("Registration", "Account", FormMethod.Post))
+            {
+                <table style="width: 100%;">
+                    <tr style="width: 100%;">
+                        <td colspan="3" style="padding-bottom: 5px;">@Html.TextBoxFor(model => model.UserName, new { placeholder = "User name", autocomplete="off", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+                    </tr>
+
+
+                    <tr style="width: 100%;">
+                        <td colspan="3" style="padding-bottom: 5px;">@Html.PasswordFor(model => model.Password, new { placeholder = "Password", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+                    </tr>
+
+
+                    <tr>
+                        <td colspan="3" style="text-align:left; padding-left:15px;"><p>Date of birth:</p></td>
+                    </tr>
+
+                    <tr style="width: 100%;">
+                        <td style="padding-bottom: 5px; padding-left:11px;">@Html.DropDownListFor(model => model.DateDay, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day", new { placeholder = "Day", @style = "width: 80px; height:37px;", @class = "rounded-corner" })</td>
+                        <td style="padding-bottom: 5px;">@Html.DropDownListFor(model => model.DateMonth, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month", new { placeholder = "Month", @style = "width: 100px; height:37px;", @class = "rounded-corner" })</td>
+                        <td style="padding-bottom: 5px; padding-right:10px;">@Html.DropDownListFor(model => model.DateYear, Enumerable.Range(1900, DateTime.Now.Year - 1900).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year", new { placeholder = "Year", @style = "width: 80px; height:37px;", @class = "rounded-corner" })</td>
+                    </tr>
+
+
+
+                    <tr style="width: 100%;">
+                        <td colspan="3" style="padding-bottom: 5px;">@Html.DropDownListFor(model => model.Gender, new[] { new SelectListItem() { Text = "Male" }, new SelectListItem() { Text = "Female" } }, "Select gender", new { placeholder = "Select gender", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+                    </tr>
+
+
+                    <tr style="width: 100%;">
+                        <td colspan="3" style="padding-bottom: 5px;">@Html.TextBoxFor(model => model.Country, new { placeholder = "Country", autocomplete="off", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+                    </tr>
+
+                </table>
+
+                <hr />
+
+                <table style="width: 100%;">
+                    <tr style="text-align:center;">
+                        <td><input type="submit" class="btn btn-primary" name="SignUp" value="Sign Up" /></td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td style="padding-top:15px;"><p>Have an account ? @Html.ActionLink("Log In", "Login", "Account")</p>.</td>
+                    </tr>
+                </table>
+            }
+
+        </fieldset>
+
+    </div>
+    <p>&copy; @DateTime.Now.Year Loners</p>
+</div>
+
+
