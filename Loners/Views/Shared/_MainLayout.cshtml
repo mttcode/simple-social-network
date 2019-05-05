@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Loners</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"> 
+                <a href="/Home/Index/" class="navbar-brand" style="color:#337AB7;">Loners</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink(@Session["UserName"].ToString(), "UserProfile", "Home")</li>
+                    <li>@Html.ActionLink("Profile", "UserProfile", "Home")</li>
+                    <li>@Html.ActionLink("Chat", "Chat", "Home")</li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Users", "Users", "Home")</li>
+                    <li>@Html.ActionLink("Sign out", "Logout", "Account")</li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year Loners</p>
+        </footer>
+    </div>
+
+</body>
+</html>
