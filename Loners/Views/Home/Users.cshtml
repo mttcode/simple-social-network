@@ -1,0 +1,112 @@
+@model List<Loners.DBModel.User>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+}
+
+<script>
+    $(function ()
+    {
+        try
+        {
+            var dir = $('#dir').val();
+            var col = $('#col').val();
+            var header = $("th a[href*=" + col + "]");
+
+            if (dir == "Ascending")
+            {
+                header.text(header.text() + " ⯅")
+            }
+            if (dir == "Descending")
+            {
+                header.text(header.text() + " ⯆")
+            }
+        } catch(e)
+    })
+
+</script>
+
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+        width: 100%;
+        border-collapse: separate;
+        border: solid 1px #ff6a00;
+        background-color: red;
+    }
+
+        .webgrid-table td, th {
+            border: 1px solid #ff6a00;
+            padding: 3px 7px 2px;
+        }
+
+    .webgrid-header {
+        background-color: #ff0000;
+        color: #FFFFFF;
+        padding-bottom: 4px;
+        padding-top: 5px;
+        text-align: left;
+    }
+
+    .webgrid-footer {
+    }
+
+    .webgrid-row-style {
+        padding: 3px 7px 2px;
+    }
+</style>
+
+
+<div class="Container">
+    <h2>Users</h2>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Search</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                @using (Html.BeginForm("Users", "Home", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                {
+                    <div class="form-group">
+                        <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" autocomplete="off" />
+                    </div>
+                    <button type="submit" value="search" class="btn btn-primary">Search</button>
+                }
+
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div>
+        @grid.Table(
+      tableStyle: "table table-responsive table-bordered",
+      columns: grid.Columns(
+          grid.Column(columnName: "UserName", header: "User name"),
+          grid.Column(columnName: "Age", header: "Age"),
+          grid.Column(columnName: "Gender", header: "Gender"),
+          grid.Column(columnName: "Country", header: "Country"),
+          grid.Column(columnName: "MBTI", header: "MBTI"),
+          grid.Column(columnName: "Status", header: "Status")
+)
+)
+
+    <div class="row">
+        <div class="col-sm-6">
+            @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+        </div>
+    </div>
+
+    @Html.Hidden("dir", grid.SortDirection)
+    @Html.Hidden("col", grid.SortColumn)
+
+    </div>
+</div>
