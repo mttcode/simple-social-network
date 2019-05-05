@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Loners</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+
+        .login-main {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 350px;
+            height: 350px;
+            text-align: center;
+        }
+
+        .login-content {
+            background-color: #ffffff;
+            border: 1px solid #e6e6e6;
+            text-align: center;
+            width: 350px;
+            height: 350px;
+            padding-top:10px;
+            padding-left:30px;
+            padding-right:30px;
+            padding-bottom:10px;
+        }
+
+        .registration-main {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 350px;
+            height: 500px;
+            text-align: center;
+        }
+
+        .registration-content {
+            background-color: #ffffff;
+            border: 1px solid #e6e6e6;
+            text-align: center;
+            width: 350px;
+            height: 500px;
+            padding-top:10px;
+            padding-left:30px;
+            padding-right:30px;
+            padding-bottom:10px;
+        }
+
+        .rounded-corner {  
+            background:#fafafa;    
+            font-size:11pt;  
+            margin-left:auto;  
+            margin-right:auto;  
+            margin-top:1px;  
+            margin-bottom:1px;  
+            padding:3px;  
+            border-top:1px solid #CCCCCC;  
+            border-left:1px solid #CCCCCC;  
+            border-right:1px solid #999999;  
+            border-bottom:1px solid #999999;  
+            -moz-border-radius: 4px;  
+            -webkit-border-radius: 4px;  
+        }  
+    </style>
+
+</head>
+
+
+<body>
+        @RenderBody()
+</body>
+</html>
