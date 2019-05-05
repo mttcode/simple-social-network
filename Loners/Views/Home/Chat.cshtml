@@ -1,0 +1,92 @@
+@model Loners.Models.ChatModel
+
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Chat</h2>
+
+    <table style="width:100%;">
+
+        <tr>
+            <td>
+
+            </td>
+
+            <td>
+                <fieldset>
+                    <table>
+                        @using (Html.BeginForm("Chat", "Home", FormMethod.Post))
+                        {
+                            <tr>
+                                <td style="width:250px;">
+                                    <input type="text" name="Message" autocomplete="off" placeholder="Type message..." class="form-control" />
+                                </td>
+                                <td style="text-align:left; padding-left:10px;">
+                                    <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-send"></span> Send</button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </fieldset>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td style="vertical-align:top; width:20%;">
+                <h3>Online users:</h3>
+
+                @{
+                    try
+                    {
+                        <table>
+                            @foreach (Loners.DBModel.User user in ((List<Loners.DBModel.User>)ViewBag.UsersOnlineList))
+                            {
+                                <tr>
+                                    <td><i style="color:limegreen;" class="fas fa-circle fa-1g"></i> <strong>@user.UserName</strong></td>                                   
+                                </tr>
+                            }
+                        </table>
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                }
+
+            </td>
+            
+            
+            <td style="vertical-align:top; width:80%;">
+                
+                <hr />
+                <h3>Messages:</h3>
+
+                @{
+                    try
+                    {
+                        <table>
+                            @foreach (Loners.DBModel.ChatBoard message in ((List<Loners.DBModel.ChatBoard>)ViewBag.ChatBoardList))
+                            {
+                            <tr>
+                                <td>[@message.DateTimeOfMessage] <strong>@message.FromUser></strong> @message.Message</td>
+                            </tr>
+                            }
+                        </table>
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+
+            </td>
+        </tr>
+
+    </table>
+
+
+
+
