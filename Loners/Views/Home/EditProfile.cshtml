@@ -1,0 +1,59 @@
+@model Loners.Models.EditModel
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Edit profile</h2>
+
+
+<fieldset>
+    @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post))
+    {
+    <table style="width: 50%;">
+        <tr>
+            <td style="text-align:left;"><p>Date of birth:</p></td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px; text-align:left;">
+            @Html.DropDownListFor(model => model.DateDay, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day", new { placeholder = "Day", @style = "width: 80px; height:37px;", @class = "rounded-corner" })
+            @Html.DropDownListFor(model => model.DateMonth, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month", new { placeholder = "Month", @style = "width: 100px; height:37px;", @class = "rounded-corner" })
+            @Html.DropDownListFor(model => model.DateYear, Enumerable.Range(1900, DateTime.Now.Year - 1900).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year", new { placeholder = "Year", @style = "width: 80px; height:37px;", @class = "rounded-corner" })
+            </td>
+        </tr>
+
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px;">@Html.TextBoxFor(model => model.Country, new { placeholder = "Country", autocomplete="off", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+        </tr>
+
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px;">@Html.TextBoxFor(model => model.AboutMe, new { placeholder = "About me", autocomplete="off", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+        </tr>
+
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px;">@Html.DropDownListFor(model => model.MBTI, new[] { new SelectListItem() { Text = "ISTJ" }, new SelectListItem() { Text = "ISFJ" }, new SelectListItem() { Text = "INFJ" }, new SelectListItem() { Text = "INTJ" }, new SelectListItem() { Text = "ISTP" }, new SelectListItem() { Text = "ISFP" }, new SelectListItem() { Text = "INFP" }, new SelectListItem() { Text = "INTP" }, new SelectListItem() { Text = "ESTP" }, new SelectListItem() { Text = "ESFP" }, new SelectListItem() { Text = "ENFP" }, new SelectListItem() { Text = "ENTP" }, new SelectListItem() { Text = "ESTJ" }, new SelectListItem() { Text = "ESFJ" }, new SelectListItem() { Text = "ENFJ" }, new SelectListItem() { Text = "ENTJ" } }, "Select MBTI", new { placeholder = "Select MBTI", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+        </tr>
+
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px;">@Html.DropDownListFor(model => model.Biorytmus, new[] { new SelectListItem() { Text = "Morning bird" }, new SelectListItem() { Text = "Night owl" } }, "Select biorytmus", new { placeholder = "Select biorytmus", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+        </tr>
+
+        <tr style="width: 50%;">
+            <td style="padding-bottom: 5px;">@Html.TextBoxFor(model => model.InterestsHobbies, new { placeholder = "Interests and hobbies", autocomplete="off", @style = "width: 265px; height:37px; padding-left:15px;", @class = "rounded-corner" })</td>
+        </tr>
+
+
+    </table>
+        <hr />
+        <table>
+            <tr>
+                <td><input type="submit" class="btn btn-primary" name="Save" value="Save" /></td>
+            </tr>
+        </table>
+    }
+</fieldset>
+
+<div style="padding-top:10px;">
+    @Html.ActionLink("Back to Profile", "UserProfile", "Home")
+</div>
