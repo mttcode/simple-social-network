@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Loners.DBModel;
 using System.Linq.Dynamic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Loners.Controllers
 {
@@ -77,7 +79,7 @@ namespace Loners.Controllers
 
 
         [HttpPost]
-        public ActionResult Chat(Loners.Models.ChatModel chatModel)
+        public async Task<ActionResult> Chat(Loners.Models.ChatModel chatModel)
         {
             DBModel.User user = new DBModel.User();
 
@@ -87,7 +89,7 @@ namespace Loners.Controllers
             chatBoard.DateTimeOfMessage = DateTime.Now.ToString();
 
             lonersEntities.ChatBoards.Add(chatBoard);
-            lonersEntities.SaveChanges();
+            await lonersEntities.SaveChangesAsync();
 
             return RedirectToAction("Chat", "Home");
         }
